@@ -52,7 +52,7 @@ print('Result :', text)
 ------
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/7955120/224110625-75458f26-14c3-49f7-b79a-ce3867f71fc7.jpg" width="70%">
+<img src="https://user-images.githubusercontent.com/7955120/224110625-75458f26-14c3-49f7-b79a-ce3867f71fc7.jpg" width="50%">
 </div>
 
 24, 다음 글의 제목으로 가장 적절한 것은? The recent "cycling as a lifestyle" crase has expressed itsefi in an increase in the number of active cyclists and in growth di cyrcling club menberstip in several Buropean, American, Australian and Asian urtan areas. It has also been acompanied) ky a symbolic reinterpretation of the bicycle, After the bicyce had been asociated with poverty for many years, expensive rereastional bicycles or recreationally-inspired commating hicycles have suddenly become aspirational products in artan eovinmments, In present times, cycling has become an activity which is also pertormed for its demonstrative value, its role in jidenity constroction and its effectiveness in impressing obers and signaling social status. To a certain extet, cycing has tumed inmo a symbolic marker of the well-dft. Ohvioasy. vabse-laden consumption bebavior is by no mesms limited to cycling, However, the link with identity costruction and) cmspiruous cnsumption has become particularly manifest in the case of cycling. * comspicuous: 눈에 잘 띄는 Cyctling Contributes to a City's Anmosphere and lidemtity The Rise of Cycling; A New Status Symbol of City Dwellers Cycting Is Weath-Building but Worsens Social Inequality HHow to Encourage and Sustain the Bicycle Crape in Uinban Areas, Espanding Hike Lane Networks Can Lead to More Inclusive Cbies

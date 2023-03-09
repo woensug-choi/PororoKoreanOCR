@@ -1,1 +1,6 @@
-__pycache__
+__pycache__/
+pororo/bin/
+pororo/lib/
+pororo/lib64
+pororo/pyvenv.cfg
+pororo/share/
