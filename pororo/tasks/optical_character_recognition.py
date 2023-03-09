@@ -48,7 +48,7 @@ class PororoOcrFactory(PororoFactoryBase):
         }
     """
 
-    def __init__(self, task: str, lang: str, model: Optional[str]):
+    def __init__(self, task: str, lang: str, model: Optional[str], dilatation_factor: float):
         super().__init__(task, lang, model)
         self.detect_model = "craft"
         self.ocr_opt = "ocr-opt"
@@ -64,7 +64,7 @@ class PororoOcrFactory(PororoFactoryBase):
             "ko": ["brainocr"],
         }
 
-    def load(self, device: str):
+    def load(self, device: str, dilatation_factor: float):
         """
         Load user-selected task-specific model
 
@@ -102,6 +102,7 @@ class PororoOcrFactory(PororoFactoryBase):
                 rec_model_ckpt_fp=rec_model_path,
                 opt_fp=opt_fp,
                 device=device,
+                dilatation_factor=dilatation_factor,
             )
             model.detector.to(device)
             model.recognizer.to(device)

@@ -8,16 +8,16 @@ warnings.filterwarnings('ignore')
 
 
 class PororoOcr:
-    def __init__(self, model: str = "brainocr", lang: str = "ko", **kwargs):
+    def __init__(self, dilatation_factor: float, model: str = "brainocr", lang: str = "ko", **kwargs):
         self.model = model
         self.lang = lang
-        self._ocr = Pororo(task="ocr", lang=lang, model=model, **kwargs)
+        self._ocr = Pororo(task="ocr", lang=lang, model=model, dilatation_factor=dilatation_factor, **kwargs)
         self.img_path = None
         self.ocr_result = {}
 
-    def run_ocr(self, img_path: str, debug: bool = False):
+    def run_ocr(self, img_path: str, debug: bool = False, **kwargs):
         self.img_path = img_path
-        self.ocr_result = self._ocr(img_path, detail=True)
+        self.ocr_result = self._ocr(img_path, detail=True, **kwargs)
 
         if self.ocr_result['description']:
             ocr_text = self.ocr_result["description"]

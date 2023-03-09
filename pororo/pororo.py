@@ -53,6 +53,7 @@ class Pororo:
     def __new__(
         cls,
         task: str,
+        dilatation_factor: float,
         lang: str = "en",
         model: Optional[str] = None,
         **kwargs,
@@ -74,8 +75,9 @@ class Pororo:
             task,
             lang,
             model,
+            dilatation_factor,
             **kwargs,
-        ).load(device)
+        ).load(device, dilatation_factor)
 
         return task_module
 

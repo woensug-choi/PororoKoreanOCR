@@ -27,7 +27,7 @@ def copy_state_dict(state_dict):
     return new_state_dict
 
 
-def test_net(image: np.ndarray, net, opt2val: dict):
+def test_net(image: np.ndarray, net, opt2val: dict, dilatation_factor):
     canvas_size = opt2val["canvas_size"]
     mag_ratio = opt2val["mag_ratio"]
     text_threshold = opt2val["text_threshold"]
@@ -61,6 +61,7 @@ def test_net(image: np.ndarray, net, opt2val: dict):
         text_threshold,
         link_threshold,
         low_text,
+        dilatation_factor,
     )
 
     # coordinate adjustment
@@ -86,8 +87,8 @@ def get_detector(det_model_ckpt_fp: str, device: str = "cpu"):
     return net
 
 
-def get_textbox(detector, image: np.ndarray, opt2val: dict):
-    bboxes, polys = test_net(image, detector, opt2val)
+def get_textbox(detector, image: np.ndarray, opt2val: dict, dilatation_factor):
+    bboxes, polys = test_net(image, detector, opt2val, dilatation_factor)
     result = []
     for i, box in enumerate(polys):
         poly = np.array(box).astype(np.int32).reshape((-1))

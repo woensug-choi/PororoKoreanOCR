@@ -16,7 +16,7 @@ def warp_coord(Minv, pt):
 
 
 def get_det_boxes_core(textmap, linkmap, text_threshold, link_threshold,
-                       low_text):
+                       low_text, dilatation_factor):
     # prepare data
     linkmap = linkmap.copy()
     textmap = textmap.copy()
@@ -49,7 +49,7 @@ def get_det_boxes_core(textmap, linkmap, text_threshold, link_threshold,
                               text_score == 0)] = 0  # remove link area
         x, y = stats[k, cv2.CC_STAT_LEFT], stats[k, cv2.CC_STAT_TOP]
         w, h = stats[k, cv2.CC_STAT_WIDTH], stats[k, cv2.CC_STAT_HEIGHT]
-        niter = int(math.sqrt(size * min(w, h) / (w * h)) * 2)
+        niter = int(math.sqrt(size * min(w, h) / (w * h)) * 2 * dilatation_factor) 
         sx, ex, sy, ey = x - niter, x + w + niter + 1, y - niter, y + h + niter + 1
         # boundary check
         if sx < 0:
@@ -60,6 +60,7 @@ def get_det_boxes_core(textmap, linkmap, text_threshold, link_threshold,
             ex = img_w
         if ey >= img_h:
             ey = img_h
+        
         kernel = cv2.getStructuringElement(
             cv2.MORPH_RECT,
             (1 + niter, 1 + niter),
@@ -282,6 +283,7 @@ def get_det_boxes(
     text_threshold,
     link_threshold,
     low_text,
+    dilatation_factor,
     poly=False,
 ):
     boxes, labels, mapper = get_det_boxes_core(
@@ -290,6 +292,7 @@ def get_det_boxes(
         text_threshold,
         link_threshold,
         low_text,
+        dilatation_factor,
     )
 
     if poly:

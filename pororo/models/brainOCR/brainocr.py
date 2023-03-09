@@ -38,6 +38,7 @@ class Reader(object):
         rec_model_ckpt_fp: str,
         opt_fp: str,
         device: str,
+        dilatation_factor: float,
     ) -> None:
         """
         TODO @karter: modify this such that you download the pretrained checkpoint files
@@ -60,6 +61,7 @@ class Reader(object):
         self.detector = get_detector(det_model_ckpt_fp, opt2val["device"])
         self.recognizer, self.converter = get_recognizer(opt2val)
         self.opt2val = opt2val
+        self.dilatation_factor = dilatation_factor
 
     @staticmethod
     def parse_options(opt_fp: str) -> dict:
@@ -82,13 +84,13 @@ class Reader(object):
             character)  # dummy '[blank]' token for CTCLoss (index 0)
         return vocab
 
-    def detect(self, img: np.ndarray, opt2val: dict):
+    def detect(self, img: np.ndarray, opt2val: dict, dilatation_factor):
         """
         :return:
             horizontal_list (list): e.g., [[613, 1496, 51, 190], [136, 1544, 134, 508]]
             free_list (list): e.g., []
         """
-        text_box = get_textbox(self.detector, img, opt2val)
+        text_box = get_textbox(self.detector, img, opt2val, dilatation_factor)
         horizontal_list, free_list = group_text_box(
             text_box,
             opt2val["slope_ths"],
@@ -234,7 +236,7 @@ class Reader(object):
 
         img, img_cv_grey = reformat_input(image)  # img, img_cv_grey: array
 
-        horizontal_list, free_list = self.detect(img, self.opt2val)
+        horizontal_list, free_list = self.detect(img, self.opt2val, self.dilatation_factor)
         result = self.recognize(
             img_cv_grey,
             horizontal_list,
